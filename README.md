@@ -1,2 +1,2 @@
-slidepay-nodejs-sdk
-===================
+Slidepay Node.js SDK
+====================
