@@ -23,10 +23,13 @@
   ],
   "dependencies": {
     "request": "~2.27.0",
-    "q": "~0.9.6"
+    "q": "~0.9.6",
+    "underscore": "~1.5.1"
   },
   "devDependencies": {
-    "mocha": "~1.12.0"
+    "mocha": "~1.12.0",
+    "chai": "~1.7.2",
+    "sinon": "~1.7.3"
   },
   "main": "./lib",
   "scripts": {
