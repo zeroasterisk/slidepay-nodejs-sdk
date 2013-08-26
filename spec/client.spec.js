@@ -15,15 +15,27 @@ describe('The SlidePay REST Client', function () {
 
 		before(function() {
 			nock(RestClient.endpoint)
+				.persist()
 				.get('/rest.svc/API')
 				.reply(200, {});
+			nock(RestClient.endpoint)
+				.persist()
+				.get('/rest.svc/API/error')
+				.reply(400, {});
 		});
 
 		it('should return a promise when no callback is passed in', function() {
 			RestClient.request().should.respondTo('then');
 		});
+
 		it('should call a callback function if one is passed in', function(done) {
 			RestClient.request(function() {
+				done();
+			});
+		});
+
+		it('should reject the promise when a 400+ response code is received', function(done) {
+			RestClient.request({url: '/error'}).fail(function(err) {
 				done();
 			});
 		});
