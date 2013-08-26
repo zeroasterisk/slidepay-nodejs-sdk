@@ -31,13 +31,25 @@ describe('The SlidePay REST Client', function () {
 	});
 
 	describe('#login', function() {
+		var supervisorBase = 'https://supervisor.getcube.com:65532';
+
 		before(function() {
-			nock(RestClient.auth.session.endpoint)
+			nock(supervisorBase)
 				.get('/rest.svc/API/login')
-				.reply(200, {token: 'token', endpoint: 'endpoint'});
+				.reply(200, {data: 'SlidePayToken', endpoint: 'https://api.getcube.com'});
+
+			RestClient.login().then(function() {
+				done();
+			});
 		});
 
-		RestClient.login();
+		it('should set a token', function() {
+			RestClient.auth.should.have.a.property('token').that.is.eq('SlidePayToken');
+		});
+
+		it('should overwrite the endpoint', function() {
+			RestClient.should.have.a.property('endpoint').that.is.eq('https://api.getcube.com');
+		});
 	});
 
 	after(function() {
