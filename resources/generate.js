@@ -32,7 +32,7 @@ Generate a function that will execute a call to the SlidePay API
 @param {string} method - The HTTP method, all caps
 @param {string} url - The path to the requested resource
 
-@returns {function} - A function that will be attached to the resource object for the method
+@returns {function} - A function that will execute the HTTP request
 */
 
 var generate = function(client, method, url) {
