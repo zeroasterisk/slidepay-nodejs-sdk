@@ -11,14 +11,14 @@ module.exports = function(client) {
 	// Instance functions
 	function api_key(id) {
 		return {
-			read: generate(client, 'GET', baseResourceUrl + '/' + id),
+			get: generate(client, 'GET', baseResourceUrl + '/' + id),
 			delete: generate(client, 'DELETE', baseResourceUrl + '/' + id)
 		};
 	}
 
 	// List functions
-	api_key.create = generate(client, 'POST', baseResourceUrl);
-	api_key.list = generate(client, 'GET', baseResourceUrl);
+	api_key.post = generate(client, 'POST', baseResourceUrl);
+	api_key.get = generate(client, 'GET', baseResourceUrl);
 
 	return api_key;
 };
