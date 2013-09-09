@@ -64,3 +64,5 @@ var generate = function(client, method, url) {
 		}
 	};
 };
+
+module.exports = generate;
