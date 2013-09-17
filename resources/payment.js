@@ -1,5 +1,5 @@
 /*
-@module resources/payments
+@module resources/payment
 SlidePay simple and stored payments
 */
 
