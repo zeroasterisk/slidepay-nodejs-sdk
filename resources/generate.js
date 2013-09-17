@@ -31,16 +31,18 @@ Generate a function that will execute a call to the SlidePay API
 @param {object} client - An instance of the API client (../lib/RestClient)
 @param {string} method - The HTTP method, all caps
 @param {string} url - The path to the requested resource
+@param {boolean} authenticated - Set the generated function to be unauthenticated
 
 @returns {function} - A function that will execute the HTTP request
 */
 
-var generate = function(client, method, url) {
+var generate = function(client, method, url, authenticated) {
 	return function() {
 		var args = process(arguments),
 			requestArgs = {
 				url: url,
-				method: method
+				method: method,
+				authRequired: authenticated
 			};
 
 		// Send parameters in the query string for GET requests
