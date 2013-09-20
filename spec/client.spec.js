@@ -1,5 +1,4 @@
 var should		= require('chai').should(),
-	sinon		= require('sinon'),
 	nock		= require('nock'),
 	slidepay	= require('../index.js'),
 	credentials	= require('../credentials.json');
