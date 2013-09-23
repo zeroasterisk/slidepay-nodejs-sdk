@@ -62,7 +62,16 @@ var generate = function(client, method, url, authenticated) {
 		}
 		// Otherwise return client.request, which will be a promise
 		else {
-			return client.request(requestArgs);
+			return client.request(requestArgs).then(function(res) {
+				// But first, append the full request to the data
+				var data = res.data;
+				data.res = res;
+				// Override its inspect method so console.log is less messy
+				data.res.inspect = function() {
+					return '[Object]';
+				};
+				return data;
+			});
 		}
 	};
 };
