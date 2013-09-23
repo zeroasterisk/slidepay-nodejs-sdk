@@ -17,13 +17,13 @@ You can either create a new instance of the SlidePay REST client either while re
 
 When requiring:
 ```javascript
-SlidePay = require('node-slidepay')(credentials);
+RestClient = require('node-slidepay')(credentials);
 ```
 
 Afterward:
 ```javascript
 slidepay = require('node-slidepay');
-SlidePay = new slidepay.RestClient(credentials);
+RestClient = new slidepay.RestClient(credentials);
 ```
 
 A separate client instance should be used for each user/session (token or API key), so you'll want to use the latter method if you're processing payments for multiple users. The REST client expects a `credentials` object to be passed in and will throw an error if one isn't passed. This object must contain at least one of the following:
