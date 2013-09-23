@@ -32,15 +32,13 @@ describe('A SlidePay payment', function() {
 	};
 
 	_.each(testCards, function(cardNumber, cardType) {
-		it('should successfully process a ' + cardType + ' card', function(done) {
+		it('should successfully process a ' + cardType + ' card', function() {
 
 			simplePayment = _.extend(passingGenericPayment, {
 				cc_number: cardNumber
 			});
 
-			SlidePay.payment.create(simplePayment).then(function(payment) {
-				done();
-			});
+			return SlidePay.payment.create(simplePayment).should.be.fulfilled;
 		});
 	});
 
@@ -50,9 +48,7 @@ describe('A SlidePay payment', function() {
 			cc_cvv2: '111'
 		});
 
-		SlidePay.payment.create(simplePayment).then(function(payment) {
-			done();
-		});
+		return SlidePay.payment.create(simplePayment).should.be.fulfilled;
 	});
 
 	it('should reject any CVV2 that is not 111', function(done) {
@@ -61,9 +57,7 @@ describe('A SlidePay payment', function() {
 			cc_cvv2: '222'
 		});
 
-		SlidePay.payment.create(simplePayment).fail(function(err) {
-			done();
-		});
+		return SlidePay.payment.create(simplePayment).should.be.rejected;
 	});
 
 	it('should reject any billing ZIP that is not 11111', function(done) {
@@ -72,8 +66,6 @@ describe('A SlidePay payment', function() {
 			cc_billing_zip: '22222'
 		});
 
-		SlidePay.payment.create(simplePayment).fail(function(err) {
-			done();
-		});
+		return SlidePay.payment.create(simplePayment).should.be.rejected;
 	});
 });

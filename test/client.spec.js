@@ -1,5 +1,4 @@
-var should		= require('chai').should(),
-	nock		= require('nock'),
+var nock		= require('nock'),
 	slidepay	= require('../index.js'),
 	credentials	= require('../credentials.json');
 
@@ -34,9 +33,7 @@ describe('The SlidePay REST Client', function () {
 		});
 
 		it('should reject the promise when the success property isn\'t true', function(done) {
-			RestClient.request({url: '/error'}).fail(function(err) {
-				done();
-			});
+			return RestClient.request({url: '/error'}).should.be.rejected;
 		});
 
 	});
@@ -44,7 +41,7 @@ describe('The SlidePay REST Client', function () {
 	describe('#login', function() {
 		var supervisorBase = 'https://supervisor.getcube.com:65532';
 
-		before(function() {
+		before(function(done) {
 			nock(supervisorBase)
 				.get('/rest.svc/API/login')
 				.reply(200, {success: true, data: 'SlidePayToken', endpoint: 'https://api.getcube.com'});
