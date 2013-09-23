@@ -90,11 +90,11 @@ This package manages most of SlidePay's resources and methods. You don't need to
 
 Supported resources and methods are listed here:
 
-* **api_key**: `create` `list` *`read`* *`delete`*
-* **authorization**: `create` `void` *`capture.auto`* *`capture.manual`*
-* **bank_account**: `create` *`read`* *`delete`*
+* **api_key**: `create` `list` *`read` `delete`*
+* **authorization**: `create` `void` *`capture.auto` `capture.manual`*
+* **bank_account**: `create` *`read` `delete`*
 * **merchant**: `createAccount` `boarding.createApplication` `boarding.submitAnswers`
-* **payment**: `create` `store` `search` *`read`* *`refund`*
+* **payment**: `create` `store` `search` *`read` `refund`*
 * **settlement**: `create` `balance` `search` *`read`*
 
 Note that resource methods that are italicized are "instance" methods, whereas the rest are "class" methods. Methods with included dots have a root object—merchant, for example, has a boarding property with `createApplication` and `submitAnswers` methods. For a payment:
