@@ -16,11 +16,11 @@ describe('The SlidePay REST Client', function () {
 			nock(RestClient.endpoint)
 				.persist()
 				.get('/rest.svc/API')
-				.reply(200, {});
+				.reply(200, {success: true});
 			nock(RestClient.endpoint)
 				.persist()
 				.get('/rest.svc/API/error')
-				.reply(400, {});
+				.reply(400, {success: false});
 		});
 
 		it('should return a promise when no callback is passed in', function() {
@@ -33,7 +33,7 @@ describe('The SlidePay REST Client', function () {
 			});
 		});
 
-		it('should reject the promise when a 400+ response code is received', function(done) {
+		it('should reject the promise when the success property isn\'t true', function(done) {
 			RestClient.request({url: '/error'}).fail(function(err) {
 				done();
 			});
@@ -47,7 +47,7 @@ describe('The SlidePay REST Client', function () {
 		before(function() {
 			nock(supervisorBase)
 				.get('/rest.svc/API/login')
-				.reply(200, {data: 'SlidePayToken', endpoint: 'https://api.getcube.com'});
+				.reply(200, {success: true, data: 'SlidePayToken', endpoint: 'https://api.getcube.com'});
 
 			RestClient.login().then(function() {
 				done();
