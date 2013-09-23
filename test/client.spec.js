@@ -10,7 +10,8 @@ describe('The SlidePay REST Client', function () {
 	var RestClient = new slidepay.RestClient(credentials);
 
 	describe('#request', function() {
-
+		// Before we execute the request method tests, set up a mock server
+		// that simulates the response of SlidePay's API
 		before(function() {
 			nock(RestClient.endpoint)
 				.persist()
@@ -23,10 +24,12 @@ describe('The SlidePay REST Client', function () {
 		});
 
 		it('should return a promise when no callback is passed in', function() {
+			// Promises have a then method, so we check if one is defined
 			RestClient.request().should.respondTo('then');
 		});
 
 		it('should call a callback function if one is passed in', function(done) {
+			// Pass a callback as argument #1 to request. It should be called.
 			RestClient.request(function() {
 				done();
 			});
@@ -42,6 +45,9 @@ describe('The SlidePay REST Client', function () {
 		var supervisorBase = 'https://supervisor.getcube.com:65532';
 
 		before(function(done) {
+			// Before we test the login behavior, set up a mock server that
+			// responds with a dummy token, an endpoint, and the right
+			// headers. The tests will only be run once login succeeds.
 			nock(supervisorBase)
 				.get('/rest.svc/API/login')
 				.reply(200, {success: true, data: 'SlidePayToken', endpoint: 'https://api.getcube.com'});
@@ -61,6 +67,7 @@ describe('The SlidePay REST Client', function () {
 	});
 
 	after(function() {
+		// Clean up the mock server
 		nock.cleanAll();
 	});
 });
