@@ -120,7 +120,7 @@ That file should be provided in a format similar to the following:
 
 ```json
 {
-	"email": "slidepay_account@example.com".
+	"email": "slidepay_account@example.com",
 	"password": "SECRET_SLIDEPAY_PASSWORD",
 	"apiKey": "IMPORTANT_SUPER_SECRET_SLIDEPAY_KEY_THAT_YOU_NEVER_SHARE" // Optional
 }
