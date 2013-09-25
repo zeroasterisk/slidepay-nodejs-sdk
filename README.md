@@ -5,7 +5,7 @@ Helper package for working with the [SlidePay](http://slidepay.com) REST API.
 
 ## Installation
 
-This package will be published on npm once backward compatibility can be guaranteed. For now, you can install via git by running ```npm install git://github.com/slidepay/slidepay-nodejs-sdk.git```. 
+This package will be published on npm once backward compatibility can be guaranteed. For now, you can install via git by running ```npm install git://github.com/slidepay/slidepay-nodejs-sdk.git```.
 
 ----------------------------
 
@@ -112,9 +112,29 @@ RestClient.payment.read('123').then(function(payment) {
 });
 ```
 
+## Testing
+
+Tests expect a `credentials.json` file in the project's root directory with a valid username and password.
+
+That file should be provided in a format similar to the following:
+
+```json
+{
+	"email": "slidepay_account@example.com".
+	"password": "SECRET_SLIDEPAY_PASSWORD",
+	"apiKey": "IMPORTANT_SUPER_SECRET_SLIDEPAY_KEY_THAT_YOU_NEVER_SHARE" // Optional
+}
+```
+
+Run the mocha tests with:
+
+```bash
+$ npm test
+```
+
 ## Contributing
 
-Please file an issue for any feature requests, questions, or bugs. If you'd like to contribute a new feature or fill gaps in the resources, fork the repository and issue a pull request. If you're adding new functionality, make sure to write appropriate tests. Tests expect a `credentials.json` file in the project's root directory with a valid username and password.
+Please file an issue for any feature requests, questions, or bugs. If you'd like to contribute a new feature or fill gaps in the resources, fork the repository and issue a pull request. If you're adding new functionality, make sure to write appropriate tests.
 
 ## License
 
