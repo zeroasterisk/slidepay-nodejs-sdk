@@ -126,7 +126,7 @@ That file should be provided in a format similar to the following:
 }
 ```
 
-Run the mocha tests with:
+Run the mocha tests from the command line with:
 
 ```bash
 $ npm test
